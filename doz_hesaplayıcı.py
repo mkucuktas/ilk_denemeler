@@ -1,10 +1,19 @@
-# Basit doz hesaplayıcı (sadece öğrenme amaçlı)
+# Doz hesaplayıcı (birden fazla hayvan için)
 
-agirlik = float(input("Hayvanın ağırlığı (kg): "))
-doz_orani = float(input("Doz oranı (mg/kg): "))
+while True:
+    agirlik = float(input("Hayvanın ağırlığı (kg) [çıkmak için 0 yaz]: "))
 
-toplam_doz = agirlik * doz_orani
+    if agirlik == 0:
+        print("Program kapatılıyor.")
+        break
 
-print("Toplam doz:", toplam_doz, "mg")
+    if agirlik < 0:
+        print("Hata: Ağırlık negatif olamaz.")
+        continue
 
-input("Kapatmak için Enter'a bas...")
+    doz_orani = float(input("Doz oranı (mg/kg): "))
+    toplam_doz = agirlik * doz_orani
+    print("Toplam doz:", toplam_doz, "mg")
+    print()
+
+	
