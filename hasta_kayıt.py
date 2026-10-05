@@ -11,16 +11,17 @@ print("Kayıtlı hasta sayısı:", len(hastalar))
 
 # Yeni hayvanları ekle
 while True:
-    ad = input("Hayvanın adı [bitirmek için boş bırak]: ")
+    ad = input("Hayvanın adı (bitirmek için sadece Enter'a bas): ")
     if ad == "":
         break
     tur = input("Türü: ")
     agirlik = float(input("Ağırlık (kg): "))
     hastalar.append({"ad": ad, "tur": tur, "agirlik": agirlik})
 
-# Kayıtları dosyaya yaz
-with open("hastalar.json", "w", encoding="utf-8") as dosya:
-    json.dump(hastalar, dosya, ensure_ascii=False, indent=2)
+    # Her eklemeden sonra hemen dosyaya yaz
+    with open("hastalar.json", "w", encoding="utf-8") as dosya:
+        json.dump(hastalar, dosya, ensure_ascii=False, indent=2)
+    print("Kaydedildi. Toplam hasta:", len(hastalar))
 
 # Doz hesabı
 doz_orani = float(input("Doz oranı (mg/kg): "))
