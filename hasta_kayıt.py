@@ -1,5 +1,15 @@
-hastalar = []
+import json
 
+# Önceki kayıtları dosyadan oku (dosya yoksa boş liste ile başla)
+try:
+    with open("hastalar.json", "r", encoding="utf-8") as dosya:
+        hastalar = json.load(dosya)
+except FileNotFoundError:
+    hastalar = []
+
+print("Kayıtlı hasta sayısı:", len(hastalar))
+
+# Yeni hayvanları ekle
 while True:
     ad = input("Hayvanın adı [bitirmek için boş bırak]: ")
     if ad == "":
@@ -8,6 +18,11 @@ while True:
     agirlik = float(input("Ağırlık (kg): "))
     hastalar.append({"ad": ad, "tur": tur, "agirlik": agirlik})
 
+# Kayıtları dosyaya yaz
+with open("hastalar.json", "w", encoding="utf-8") as dosya:
+    json.dump(hastalar, dosya, ensure_ascii=False, indent=2)
+
+# Doz hesabı
 doz_orani = float(input("Doz oranı (mg/kg): "))
 
 for hasta in hastalar:
